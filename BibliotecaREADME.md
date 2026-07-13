@@ -697,6 +697,7 @@ Installation
 npm install axios
 ```
 ### BREAKDOWN
+
 | File                  | React Concept     | Why it's used here                                                    |
 | --------------------- | ----------------- | --------------------------------------------------------------------- |
 | `main.jsx`            | `BrowserRouter`   | Gives the entire application access to React Router.                  |
@@ -717,3 +718,41 @@ npm install axios
 | `AuthContext.jsx`     | `createContext`   | Stores authentication globally.                                       |
 | `AccountPage.jsx`     | `axios.get()`     | Retrieves the current user's profile and reservations.                |
 | `AccountPage.jsx`     | `axios.delete()`  | Returns a reserved book.                                              |
+
+| File                  | State               | Why?                                     |
+| --------------------- | ------------------- | ---------------------------------------- |
+| `BooksPage.jsx`       | `books`             | Stores every book returned from the API. |
+| `BookDetailsPage.jsx` | `book`              | Stores the selected book.                |
+| `LoginPage.jsx`       | `email`, `password` | Controlled form inputs.                  |
+| `AccountPage.jsx`     | `user`              | Displays authenticated user information. |
+
+| Endpoint            | Used By               | Purpose                              |
+| ------------------- | --------------------- | ------------------------------------ |
+| `GET /books`        | `BooksPage.jsx`       | Retrieve the catalog.                |
+| `GET /books/:id`    | `BookDetailsPage.jsx` | Retrieve one book.                   |
+| `POST /users/login` | `LoginPage.jsx`       | Authenticate the user.               |
+| `GET /users/me`     | `AccountPage.jsx`     | Retrieve the current user's profile. |
+
+| Component         | Responsibility                           |
+| ----------------- | ---------------------------------------- |
+| `Layout`          | Shared application layout.               |
+| `Navbar`          | Navigation.                              |
+| `BooksPage`       | Retrieve and display all books.          |
+| `BookCard`        | Display one book.                        |
+| `BookDetailsPage` | Display one book and allow reservations. |
+
+main.jsx
+│
+├── Starts the application
+│
+App.jsx
+│
+├── Controls routing
+│
+Layout.jsx
+│
+├── Creates the shared page structure
+│
+Navbar.jsx
+│
+└── Provides navigation
