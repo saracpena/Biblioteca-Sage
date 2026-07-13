@@ -13,7 +13,7 @@ export default function BooksPage() {
       try {
         const response = await axios.get(`${API_URL}/books`);
 
-        setBooks(response.data.books);
+        setBooks(response.data);
       } catch (error) {
         console.log(error);
       }
