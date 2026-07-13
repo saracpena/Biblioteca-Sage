@@ -4,17 +4,25 @@ import BooksDetailsPage from "./pages/BooksDetailsPage";
 
 function App() {
   return (
-    <div className="app-header">
-      <h1 className="app-title">
-        <img id="logo-image" src="books.png" />
-        Biblioteca Sage
-      </h1>
-      <Routes>
-        <Route path="/" element={<BooksPage />} />
-        <Route path="/books" element={<BooksPage />} />
-        <Route path="/books/:id" element={<BooksDetailsPage />} />
-      </Routes>
-    </div>
+<>
+  <header className="app-header">
+    <img
+      id="logo-image"
+      src="/books.png"
+      alt="Biblioteca Sage logo"
+    />
+
+    <h1 className="app-title">Biblioteca Sage</h1>
+  </header>
+
+  <main>
+    <Routes>
+      <Route path="/" element={<BooksPage />} />
+      <Route path="/books" element={<BooksPage />} />
+      <Route path="/books/:id" element={<BooksDetailsPage />} />
+    </Routes>
+  </main>
+</>
   );
 }
 
