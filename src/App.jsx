@@ -3,7 +3,7 @@ function App() {
     <div>
       <h1>
         <img id="logo-image" src="books.png" />
-        Library App
+        Biblioteca Sage
       </h1>
 
       <p>

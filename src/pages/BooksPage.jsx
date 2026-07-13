@@ -6,7 +6,7 @@ const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 export default function BooksPage() {
     const [books, setBooks] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => { // run code after component renders
         const getBooks = async () => {
             try {
                 const response = await axios.get(`${API_URL}/books`);
@@ -64,3 +64,9 @@ When the page first loads, it retrieves every book from the API using Axios.
 The returned array is stored in state with useState(), allowing React to automatically 
 re-render once the data arrives. BooksPage owns the catalog but delegates the display 
 of each individual book to the BookCard component. */
+
+//! REMINDER:
+/*| React Concept | Simple Definition                    | Biblioteca Sage Example                |
+  | ------------- | ------------------------------------ | -------------------------------------- |
+  | `useState()`  | Stores information that can change.  | Store the array of books.              |
+  | `useEffect()` | Runs code after a component renders. | Retrieve books when `BooksPage` loads. | */
