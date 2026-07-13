@@ -26,7 +26,7 @@ export default function BooksPage() {
     <section>
       <h1>Library Catalog</h1>
 
-      <div>
+      <div className="books-grid">
         {books.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}

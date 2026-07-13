@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 
 export default function BookCard({ book }) {
   return (
-    <article>
+    <article className="book-card">
       <img src={book.coverimage} alt={book.title} />
 
       <h2>{book.title}</h2>
