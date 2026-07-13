@@ -21,6 +21,8 @@ export default function BooksDetailsPage() {
     getBook();
   }, [id]);
 
+  console.log(book);
+
   if (!book) {
     return <p>Loading book...</p>;
   }
