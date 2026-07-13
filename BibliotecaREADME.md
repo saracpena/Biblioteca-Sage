@@ -74,24 +74,6 @@ The purpose of this project is to practice building a complete React application
 
 ---
 
-# Assignment Checklist
-
-| Requirement                        | Complete |
-| ---------------------------------- | :------: |
-| React Router                       |     ☐    |
-| View Catalog                       |     ☐    |
-| View Book Details                  |     ☐    |
-| Register                           |     ☐    |
-| Login                              |     ☐    |
-| Reserve Book                       |     ☐    |
-| Prevent Reserving Unavailable Book |     ☐    |
-| View Profile                       |     ☐    |
-| View Reservations                  |     ☐    |
-| Return Book                        |     ☐    |
-| Pull Request                       |     ☐    |
-
----
-
 # Project Setup
 
 Before building the application, a few dependencies need to be installed.
