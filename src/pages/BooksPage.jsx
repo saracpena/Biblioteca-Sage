@@ -1,63 +1,48 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import BookCard from "./BookCard";
 
 const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
 export default function BooksPage() {
-    const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([]);
 
-    useEffect(() => { // run code after component renders
-        const getBooks = async () => {
-            try {
-                const response = await axios.get(`${API_URL}/books`);
+  useEffect(() => {
+    // run code after component renders
+    const getBooks = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/books`);
 
-                setBooks(response.data.books);
-            } catch (error) {
-                console.log(error);
-            }
-        };
+        setBooks(response.data.books);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-        getBooks();
-    }, []);
+    getBooks();
+  }, []);
 
-    if (isLoading) {
-        return <p>Loading books...</p>;
-    }
-
-    if (error) {
-        return <p>{error}</p>;
-    }
-
-    return (
-<section>
+  return (
+    <section>
       <h1>Library Catalog</h1>
 
       <div>
         {books.map((book) => (
-          <article key={book.id}>
-            <h2>{book.title}</h2>
-            <p>{book.author}</p>
-          </article>
+          <BookCard key={book.id} book={book} />
         ))}
       </div>
     </section>
   );
 }
 
-
-
-
-
-
-
-/* 
-* Homepage/Main Page
-* Retrieve all books i.e. state
-* Store the books
-* Handle loading
-* Handle errors
-* Render a collection of BookCards
-*/
+/*
+ * Homepage/Main Page
+ * Retrieve all books i.e. state
+ * Store the books
+ * Handle loading
+ * Handle errors
+ * Render a collection of BookCards
+ */
 
 /* BooksPage.jsx is responsible for displaying the library catalog. 
 When the page first loads, it retrieves every book from the API using Axios. 
