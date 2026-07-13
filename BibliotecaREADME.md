@@ -696,3 +696,24 @@ Installation
 ```bash
 npm install axios
 ```
+### BREAKDOWN
+| File                  | React Concept     | Why it's used here                                                    |
+| --------------------- | ----------------- | --------------------------------------------------------------------- |
+| `main.jsx`            | `BrowserRouter`   | Gives the entire application access to React Router.                  |
+| `App.jsx`             | `Routes`, `Route` | Maps URLs to the correct page component.                              |
+| `Layout.jsx`          | `Outlet`          | Displays the current page while keeping the shared layout persistent. |
+| `Navbar.jsx`          | `NavLink`         | Lets users navigate between pages and highlights the active route.    |
+| `BooksPage.jsx`       | `useState`        | Stores the list of books returned from the API.                       |
+| `BooksPage.jsx`       | `useEffect`       | Retrieves books when the page first loads.                            |
+| `BooksPage.jsx`       | `axios.get()`     | Requests all books from the API.                                      |
+| `BookDetailsPage.jsx` | `useParams`       | Reads the book ID from the URL to request the correct book.           |
+| `BookDetailsPage.jsx` | `axios.get()`     | Retrieves one specific book.                                          |
+| `BookDetailsPage.jsx` | `axios.post()`    | Sends a reservation request.                                          |
+| `RegisterPage.jsx`    | `useState`        | Stores form input values.                                             |
+| `RegisterPage.jsx`    | `axios.post()`    | Sends registration data to the API.                                   |
+| `RegisterPage.jsx`    | `useNavigate`     | Redirects the user after successful registration.                     |
+| `LoginPage.jsx`       | `axios.post()`    | Authenticates the user.                                               |
+| `LoginPage.jsx`       | `useNavigate`     | Redirects after successful login.                                     |
+| `AuthContext.jsx`     | `createContext`   | Stores authentication globally.                                       |
+| `AccountPage.jsx`     | `axios.get()`     | Retrieves the current user's profile and reservations.                |
+| `AccountPage.jsx`     | `axios.delete()`  | Returns a reserved book.                                              |
