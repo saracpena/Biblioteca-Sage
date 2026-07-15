@@ -1,14 +1,28 @@
 import { NavLink } from "react-router";
+import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
+  const { token, logout } = useAuth();
+
     return (
     <nav>
       <h2>Biblioteca Sage</h2>
 
       <NavLink to="/">Home</NavLink>
       <NavLink to="/books">Books</NavLink>
-      <NavLink to="/register">Register</NavLink>
-      <NavLink to="/login">Login</NavLink>
+      {/* <NavLink to="/register">Register</NavLink>
+      <NavLink to="/login">Login</NavLink> */}
+       {token ? (
+        <>
+          <NavLink to="/account">Account</NavLink>
+          <button onClick={logout}>Logout</button>
+        </>
+      ) : (
+        <>
+          <NavLink to="/register">Register</NavLink>
+          <NavLink to="/login">Login</NavLink>
+        </>
+      )}
     </nav>
     );
 }
