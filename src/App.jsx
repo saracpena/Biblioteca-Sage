@@ -1,8 +1,12 @@
+/* Dependencies */
 import { Routes, Route } from "react-router";
+
+/* Component Imports */
 import Navbar from "./components/Navbar";
 import BooksPage from "./pages/BooksPage";
 import BooksDetailsPage from "./pages/BooksDetailsPage";
 import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -19,6 +23,7 @@ function App() {
           <Route path="/books" element={<BooksPage />} />
           <Route path="/books/:id" element={<BooksDetailsPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </main>
     </>
