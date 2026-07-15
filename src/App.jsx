@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router";
 import BooksPage from "./pages/BooksPage";
 import BooksDetailsPage from "./pages/BooksDetailsPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/" element={<BooksPage />} />
       <Route path="/books" element={<BooksPage />} />
       <Route path="/books/:id" element={<BooksDetailsPage />} />
+      <Route path="/register" element={<RegisterPage />} />
     </Routes>
   </main>
 </>
