@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
-  const { token, logout } = useAuth();
+  const { token, logout } = useAuth(); //shares state
 
     return (
     <nav>
@@ -10,14 +10,13 @@ export default function Navbar() {
 
       <NavLink to="/">Home</NavLink>
       <NavLink to="/books">Books</NavLink>
-      {/* <NavLink to="/register">Register</NavLink>
-      <NavLink to="/login">Login</NavLink> */}
-       {token ? (
+
+       {token ? ( //if token exist show account and logout
         <>
           <NavLink to="/account">Account</NavLink>
           <button onClick={logout}>Logout</button>
         </>
-      ) : (
+      ) : ( //else show register and login options
         <>
           <NavLink to="/register">Register</NavLink>
           <NavLink to="/login">Login</NavLink>
