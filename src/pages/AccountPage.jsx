@@ -25,8 +25,8 @@ export default function AccountPage() {
         <div>
           {user.reservations.map((reservation) => (
             <article key={reservation.id}>
-              <h3>{reservation.book.title}</h3>
-              <p>{reservation.book.author}</p>
+              <h3>{reservation.title}</h3>
+              <p>{reservation.author}</p>
             </article>
           ))}
         </div>

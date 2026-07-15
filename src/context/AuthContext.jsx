@@ -1,4 +1,9 @@
-import { createContext, useContext, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import axios from "axios";
 
 const API_URL =
@@ -27,6 +32,12 @@ export function AuthProvider({ children }) {
     }
   };
 
+  useEffect(() => {
+    if (token) {
+      getUser(token);
+    }
+  }, [token]);
+
   const login = (newToken, newUser) => {
     localStorage.setItem("token", newToken);
     setToken(newToken);
@@ -51,6 +62,7 @@ export function AuthProvider({ children }) {
         user,
         login,
         logout,
+        getUser,
       }}
     >
       {children}
