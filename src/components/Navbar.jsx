@@ -2,7 +2,9 @@ import { NavLink } from "react-router";
 import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
-  const { token, logout } = useAuth(); //shares state
+  //const { token, logout } = useAuth(); //shares state
+  const { token, user, logout } = useAuth();
+  console.log(user);
 
     return (
     <nav>

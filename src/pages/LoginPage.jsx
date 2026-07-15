@@ -9,17 +9,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-//   const { login } = useAuth(); //share login state from authcontext
-  const login = (newToken, newUser) => {
-  localStorage.setItem("token", newToken);
-  setToken(newToken);
-
-  if (newUser) {
-    setUser(newUser);
-  } else {
-    getUser(newToken);
-  }
-};
+  const { login } = useAuth();
 
   const handleLogin = async (event) => {
     event.preventDefault();
