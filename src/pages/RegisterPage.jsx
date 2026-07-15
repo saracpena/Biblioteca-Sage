@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 const API_URL =
   "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
@@ -9,9 +10,13 @@ export default function RegisterPage() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
+  const { login } = useAuth();
 
   const register = async (event) => {
     event.preventDefault();
+
+  
 
     try {
       const response = await axios.post(`${API_URL}/users/register`, {
@@ -20,6 +25,8 @@ export default function RegisterPage() {
         email,
         password,
       });
+
+      login(response.data.token, response.data.user);
 
       console.log(response.data);
     } catch (error) {
