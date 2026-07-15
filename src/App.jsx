@@ -4,9 +4,10 @@ import { Routes, Route } from "react-router";
 /* Component Imports */
 import Navbar from "./components/Navbar";
 import BooksPage from "./pages/BooksPage";
-import BooksDetailsPage from "./pages/BooksDetailsPage";
+import BookDetailsPage from "./pages/BookDetailsPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import AccountPage from "./pages/AccountPage";
 
 function App() {
   return (
@@ -21,9 +22,10 @@ function App() {
         <Routes>        
           <Route path="/" element={<BooksPage />} />
           <Route path="/books" element={<BooksPage />} />
-          <Route path="/books/:id" element={<BooksDetailsPage />} />
+          <Route path="/books/:id" element={<BookDetailsPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/account" element={<AccountPage />} />
         </Routes>
       </main>
     </>

@@ -4,7 +4,7 @@ import axios from "axios";
 
 const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
-export default function BooksDetailsPage() {
+export default function BookDetailsPage() {
   const [book, setBook] = useState(null);
   const { id } = useParams();
 
