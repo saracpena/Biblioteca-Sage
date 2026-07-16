@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
@@ -11,6 +12,8 @@ export default function LoginPage() {
 
   const { login } = useAuth();
 
+  const navigate = useNavigate();
+
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -21,6 +24,8 @@ export default function LoginPage() {
       });
 
       login(response.data.token, null);
+
+      navigate("/books"); //? WHY? For better user experience. Instead of sitting on "login" then route user to start using app!
 
       console.log(response.data);
     } catch (error) {
