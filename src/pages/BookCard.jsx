@@ -3,7 +3,14 @@ import { NavLink } from "react-router";
 export default function BookCard({ book }) {
   return (
     <article className="book-card">
-      <img src={book.coverimage} alt={book.title} />
+      <img
+        src={book.coverimage || "/book-placeholder.png"}
+        alt={book.title}
+        onError={(e) => {
+          e.currentTarget.onerror = null;
+          e.currentTarget.src = "/book-placeholder.png";
+        }}
+      />
 
       <h2>{book.title}</h2>
 

@@ -1,4 +1,5 @@
 import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 import axios from "axios";
 
 const API_URL =
@@ -6,15 +7,16 @@ const API_URL =
 
 export default function AccountPage() {
   const { user, token, getUser } = useAuth();
+  const [message, setMessage] = useState("");
 
   if (!user) {
     return <p>Please log in to view your account.</p>;
   }
 
-  const returnBook = async (reservationId) => {
+  const returnBook = async (reservation) => {
   try {
     await axios.delete(
-      `${API_URL}/reservations/${reservationId}`,
+      `${API_URL}/reservations/${reservation.id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -23,8 +25,16 @@ export default function AccountPage() {
     );
 
     await getUser(token);
+
+    setMessage(
+      `${reservation.title} has been returned to the library.`
+    );
+
+    setTimeout(() => {
+      setMessage("");
+    }, 4000);
   } catch (error) {
-    console.log(error);
+    console.log(error.response?.data || error);
   }
 };
 
@@ -49,9 +59,10 @@ export default function AccountPage() {
               <h3>{reservation.title}</h3>
               <p>{reservation.author}</p>
 
-              <button className="button-primary" onClick={() => returnBook(reservation.id)}>Return Book</button>
+              <button className="button-primary" onClick={() => returnBook(reservation)}>Return Book</button>
             </article>
           ))}
+          {message && <div className="snackbar">{message}</div>}
         </div>
       )}
     </section>

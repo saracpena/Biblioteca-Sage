@@ -6,26 +6,26 @@ export default function Navbar() {
   const { token, user, logout } = useAuth();
   console.log(user);
 
-    return (
+  return (
     <nav>
-      {/* <h2>Biblioteca Sage</h2> */}
-
       <NavLink to="/">Home</NavLink>
       <NavLink to="/books">Books</NavLink>
+      <NavLink to="/account">Account</NavLink>
 
-       {token ? ( //if token exist show account and logout
-        <>
-          <NavLink to="/account">Account</NavLink>
-          <button onClick={logout}>Logout</button>
-        </>
-      ) : ( //else show register and login options
-        <>
-          <NavLink to="/register">Register</NavLink>
-          <NavLink to="/login">Login</NavLink>
-        </>
-      )}
+      <div className="nav-user">
+        {user && (
+          <>
+            <span className="welcome">Welcome, {user.firstname}</span>
+            <span className="divider">|</span>
+          </>
+        )}
+
+        <button className="logout-button" onClick={logout}>
+          Logout
+        </button>
+      </div>
     </nav>
-    );
+  );
 }
 
 /* Navbar allows users to navigate throughout Biblioteca Sage.

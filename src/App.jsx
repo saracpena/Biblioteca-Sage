@@ -12,11 +12,15 @@ import AccountPage from "./pages/AccountPage";
 function App() {
   return (
     <>
-      <header className="app-header">
-        <img id="logo-image" src="/books.png" alt="Biblioteca Sage logo" />
-
-        <h1 className="app-title">Biblioteca Sage</h1>
-      </header>
+    <header className="app-header">
+  <div className="brand">
+    <img id="logo-image" src="/books.png" alt="Biblioteca Sage logo" />
+    <div>
+      <h1 className="app-title">Biblioteca Sage</h1>
+      <p className="tagline">Explore • Borrow • Read</p>
+    </div>
+  </div>
+</header>
       <Navbar/>
       <main>
         <Routes>        

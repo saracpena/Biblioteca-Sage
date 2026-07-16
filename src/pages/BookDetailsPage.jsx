@@ -3,11 +3,11 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
-const API_URL =
-  "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
+const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
 export default function BookDetailsPage() {
   const [book, setBook] = useState(null);
+  const [message, setMessage] = useState("");
   const { id } = useParams();
   const { token, getUser } = useAuth();
 
@@ -25,24 +25,38 @@ export default function BookDetailsPage() {
   }, [id]);
 
   const reserveBook = async () => {
-    try {
-      await axios.post(
-        `${API_URL}/reservations`,
-        {
-          bookId: book.id,
+  try {
+    await axios.post(
+      `${API_URL}/reservations`,
+      {
+        bookId: book.id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      }
+    );
 
-      getUser(token);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    await getUser(token);
+
+    // Immediately mark this book unavailable on the current page.
+    setBook({
+      ...book,
+      available: false,
+    });
+
+    setMessage(
+      `We've received your reservation for ${book.title} and added it to your account.`
+    );
+
+    setTimeout(() => {
+      setMessage("");
+    }, 4000);
+  } catch (error) {
+    console.log(error.response?.data || error);
+  }
+};
 
   if (!book) {
     return <p>Loading book...</p>;
@@ -58,17 +72,19 @@ export default function BookDetailsPage() {
 
       {token && (
         <button
+          className="button-primary"
           onClick={reserveBook}
           disabled={!book.available}
         >
           {book.available ? "Reserve Book" : "Unavailable"}
         </button>
       )}
+      {message && <div className="snackbar">{message}</div>}
     </section>
   );
 }
 
-//TODO: 
+//TODO:
 /* 
 ✓ useParams()
 
