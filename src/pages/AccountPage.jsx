@@ -29,27 +29,27 @@ export default function AccountPage() {
 };
 
   return (
-    <section>
-      <h1>My Account</h1>
+    <section className="account-panel">
+      <h2>My Account</h2>
 
-      <h2>
+      <h3 className="account-greeting">
         Welcome, {user.firstname} {user.lastname}
-      </h2>
+      </h3>
 
       <p>Email: {user.email}</p>
 
-      <h2>My Reserved Books</h2>
+      <h3>My Reserved Books</h3>
 
       {user.reservations.length === 0 ? (
         <p>You have no reserved books.</p>
       ) : (
         <div>
           {user.reservations.map((reservation) => (
-            <article key={reservation.id}>
+            <article className="reservation-card" key={reservation.id}>
               <h3>{reservation.title}</h3>
               <p>{reservation.author}</p>
 
-              <button onClick={() => returnBook(reservation.id)}>Return Book</button>
+              <button className="button-primary" onClick={() => returnBook(reservation.id)}>Return Book</button>
             </article>
           ))}
         </div>

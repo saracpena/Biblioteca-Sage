@@ -8,7 +8,7 @@ export default function Navbar() {
 
     return (
     <nav>
-      <h2>Biblioteca Sage</h2>
+      {/* <h2>Biblioteca Sage</h2> */}
 
       <NavLink to="/">Home</NavLink>
       <NavLink to="/books">Books</NavLink>

@@ -34,17 +34,35 @@ a:hover {
    Layout
 =================================== */
 
-#root {
-  min-height: 100vh;
+:root {
+  --background: #f6f3ed;
+  --surface: #ffffff;
+  --surface-soft: #eef3ef;
+
+  --text: #252525;
+  --text-muted: #6b6b6b;
+
+  --sage: #5f786b;
+  --sage-dark: #40584c;
+  --sage-light: #dfe9e2;
+
+  --border: #ddd8cf;
+  --danger: #9b4b4b;
+
+  --shadow-soft: 0 8px 24px rgba(37, 37, 37, 0.08);
+  --shadow-hover: 0 14px 34px rgba(37, 37, 37, 0.14);
 }
 
 .app-header {
   display: flex;
   align-items: center;
-  padding: 1.5rem 2rem;
-  gap: 1rem;
-  background: white;
-  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
+  gap: 2rem;
+
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(37, 37, 37, 0.06);
 }
 
 #logo-image {
@@ -75,31 +93,33 @@ main {
 }
 
 .book-card {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
   padding: 1rem;
 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
-
-  transition: transform .2s ease,
-              box-shadow .2s ease;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .book-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+  box-shadow: var(--shadow-hover);
 }
 
 .book-card img {
   width: 100%;
-  aspect-ratio: 6 / 4;
+  aspect-ratio: 5 / 3;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
+  background: var(--surface-soft);
   margin-bottom: 1rem;
-  background: #f1f1f1;
 }
-
 
 .book-card h2 {
   margin: 0 0 .5rem;
@@ -110,12 +130,185 @@ main {
   margin: .35rem 0;
 }
 
+
 /* ===================================
-   Navbar
+Navbar
 =================================== */
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+nav a,
+nav button {
+  padding: 5px 5px 5px 5px;
+  border-radius: 3px;
+  border: none;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+nav a:hover,
+nav button:hover {
+  background: var(--sage-light);
+  color: var(--sage-dark);
+}
+
+nav a.active {
+  background: var(--sage);
+  color: white;
+}
+
+/* ===================================
+Buttons
+=================================== */
+
+.button-primary {
+  background-color: var(--sage);
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 8px rgba(95, 120, 107, 0.18);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.button-primary:hover {
+  background-color: var(--sage-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(95, 120, 107, 0.28);
+}
+
+.book-card a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  
+  margin-top: auto;
+  padding: 0.75rem 1rem;
+  
+  border: none;
+  border-radius: 999px;
+  background: var(--sage);
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  
+  transition:
+  background 0.2s ease,
+  transform 0.2s ease;
+}
+
+.button-primary:hover,
+.book-card a:hover {
+  background: var(--sage-dark);
+  transform: translateY(-1px);
+}
+
+.status {
+  align-self: flex-start;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status.available {
+  background: var(--sage-light);
+  color: var(--sage-dark);
+}
+
+.status.unavailable {
+  background: #f3dddd;
+  color: var(--danger);
+}
+
+
+/* ===================================
+Forms
+=================================== */
+
+.form-card {
+  width: min(520px, 100%);
+  margin: 2rem auto;
+  padding: 2rem;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.form-card form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-card label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.form-card input {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: white;
+  font: inherit;
+}
+
+.form-card input:focus {
+  outline: 2px solid var(--sage-light);
+  border-color: var(--sage);
+}
+
+
+/* ===================================
+Account Page
+=================================== */
+
+.account-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.account-greeting {
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.reservation-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+
+  background: #eef3ef;
+  border-radius: 14px;
+
+  max-width: 650px;
 }

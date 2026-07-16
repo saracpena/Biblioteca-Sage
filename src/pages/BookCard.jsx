@@ -9,11 +9,11 @@ export default function BookCard({ book }) {
 
       <p>{book.author}</p>
 
-      <p>{book.available ? "Available" : "Checked Out"}</p>
+      <p className={book.available ? "status available" : "status unavailable"}>
+        {book.available ? "Available" : "Checked Out"}
+      </p>
 
-      <NavLink to={`/books/${book.id}`}>
-        View Details
-      </NavLink>
+      <NavLink to={`/books/${book.id}`}>View Details</NavLink>
     </article>
   );
 }

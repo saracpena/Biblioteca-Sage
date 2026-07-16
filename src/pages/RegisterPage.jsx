@@ -35,7 +35,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <section>
+    <section className="form-card">
       <h1>Register</h1>
 
       <form onSubmit={register}>
