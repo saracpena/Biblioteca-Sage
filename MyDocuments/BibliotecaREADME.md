@@ -756,3 +756,12 @@ Layout.jsx
 Navbar.jsx
 │
 └── Provides navigation
+
+## Lessons Learned
+
+- React Router controls navigation, not data.
+- Components should have one responsibility.
+- Context prevents passing authentication through many layers of props.
+- Axios handles communication with the API.
+- useEffect is commonly used for fetching data after rendering.
+- State changes cause React to re-render the UI.
