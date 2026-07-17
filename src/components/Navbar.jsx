@@ -6,14 +6,16 @@ export default function Navbar() {
 
   return (
     <nav>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/books">Books</NavLink>
+      <div className="nav-links">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/books">Books</NavLink>
 
-      {token ? (
-        <>
-          <NavLink to="/account">Account</NavLink>
+        {token && <NavLink to="/account">Account</NavLink>}
+      </div>
 
-          <div className="nav-user">
+      <div className="nav-auth">
+        {token ? (
+          <>
             {user && (
               <>
                 <span className="welcome">
@@ -30,14 +32,14 @@ export default function Navbar() {
             >
               Logout
             </button>
-          </div>
-        </>
-      ) : (
-        <>
-          <NavLink to="/register">Register</NavLink>
-          <NavLink to="/login">Login</NavLink>
-        </>
-      )}
+          </>
+        ) : (
+          <>
+            <NavLink to="/signup">Sign Up</NavLink>
+            <NavLink to="/login">Log In</NavLink>
+          </>
+        )}
+      </div>
     </nav>
   );
 }
