@@ -11,7 +11,7 @@ export default function LoginPage() {
 
   const { login } = useAuth();
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const handleLogin = async (event) => {
     event.preventDefault();

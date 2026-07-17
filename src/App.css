@@ -160,6 +160,7 @@ nav a.active {
 }
 
 .welcome {
+  padding: 5px;
   color: white;
   font-weight: 500;
 }

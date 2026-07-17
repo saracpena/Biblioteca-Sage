@@ -13,30 +13,32 @@ export default function AccountPage() {
     return <p>Please log in to view your account.</p>;
   }
 
+  const reservations = user.reservations || []; //if there are currently no reservations, default or use the empty array on the right.
+
   const returnBook = async (reservation) => {
-  try {
-    await axios.delete(
-      `${API_URL}/reservations/${reservation.id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    try {
+      await axios.delete(
+        `${API_URL}/reservations/${reservation.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    await getUser(token);
+      await getUser(token);
 
-    setMessage(
-      `${reservation.title} has been returned to the library.`
-    );
+      setMessage(
+        `${reservation.title} has been returned to the library.`
+      );
 
-    setTimeout(() => {
-      setMessage("");
-    }, 4000);
-  } catch (error) {
-    console.log(error.response?.data || error);
-  }
-};
+      setTimeout(() => {
+        setMessage("");
+      }, 4000);
+    } catch (error) {
+      console.log(error.response?.data || error);
+    }
+  };
 
   return (
     <section className="account-panel">
@@ -50,21 +52,30 @@ export default function AccountPage() {
 
       <h3>My Reserved Books</h3>
 
-      {user.reservations.length === 0 ? (
+      {reservations.length === 0 ? (
         <p>You have no reserved books.</p>
       ) : (
         <div>
-          {user.reservations.map((reservation) => (
-            <article className="reservation-card" key={reservation.id}>
+          {reservations.map((reservation) => (
+            <article
+              className="reservation-card"
+              key={reservation.id}
+            >
               <h3>{reservation.title}</h3>
               <p>{reservation.author}</p>
 
-              <button className="button-primary" onClick={() => returnBook(reservation)}>Return Book</button>
+              <button
+                className="button-primary"
+                onClick={() => returnBook(reservation)}
+              >
+                Return Book
+              </button>
             </article>
           ))}
-          {message && <div className="snackbar">{message}</div>}
         </div>
       )}
+
+      {message && <div className="snackbar">{message}</div>}
     </section>
   );
 }

@@ -33,12 +33,14 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    if (token) {
+    if (token && !user) {
       getUser(token);
-    } else {
+    }
+
+    if (!token) {
       setUser(null);
     }
-  }, [token]);
+  }, [token, user]);
 
   const login = (newToken, newUser = null) => {
     localStorage.setItem("token", newToken);

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
@@ -13,26 +14,35 @@ export default function RegisterPage() {
   
   const { login } = useAuth();
 
+  const navigate = useNavigate();//once logged in send user to Account Page
+
   const register = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-  
-
-    try {
-      const response = await axios.post(`${API_URL}/users/register`, {
-        firstName,
-        lastName,
-        email,
-        password,
-      });
-
-      login(response.data.token, response.data.user);
-
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const newUser = {
+    firstname: firstName,
+    lastname: lastName,
+    email,
+    password,
   };
+
+  console.log("Sending:", newUser);
+
+  try {
+    const response = await axios.post(
+      `${API_URL}/users/register`,
+      newUser
+    );
+
+    console.log("API returned:", response.data);
+
+    login(response.data.token, response.data.user);
+    navigate("/account");
+  } catch (error) {
+    console.log(error.response?.data || error);
+  }
+};
+
 
   return (
     <section className="form-card">
