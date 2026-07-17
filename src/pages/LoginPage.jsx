@@ -3,8 +3,7 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
-const API_URL =
-  "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
+const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -34,8 +33,11 @@ export default function LoginPage() {
   };
 
   return (
-    <section>
-      <h1>Login</h1>
+    <section className="form-card">
+      <h1>Welcome Back</h1>
+      <p className="form-intro">
+        Log in to browse books and manage your reservations.
+      </p>
 
       <form onSubmit={handleLogin}>
         <label>
@@ -44,6 +46,7 @@ export default function LoginPage() {
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
+            required
           />
         </label>
 
@@ -53,10 +56,13 @@ export default function LoginPage() {
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            required
           />
         </label>
 
-        <button type="submit">Login</button>
+        <button className="button-primary" type="submit">
+          Log In
+        </button>
       </form>
     </section>
   );

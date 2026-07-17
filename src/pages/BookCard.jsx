@@ -1,19 +1,29 @@
+import { useState } from "react";
 import { NavLink } from "react-router";
 
 export default function BookCard({ book }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const showPlaceholder = !book.coverimage || imageFailed; //? Does this card currently have an image?
+
   return (
     <article className="book-card">
-      <img
-        src={book.coverimage || "/book-placeholder.png"}
-        alt={book.title}
-        onError={(e) => {
-          e.currentTarget.onerror = null;
-          e.currentTarget.src = "/book-placeholder.png";
-        }}
-      />
+      <div className="book-cover">
+        {showPlaceholder ? (
+          <div className="book-placeholder">
+            <div className="placeholder-icon">📖</div>
+            <h3>Biblioteca Sage</h3>
+            <p>Classic Collection</p>
+          </div>
+        ) : (
+          <img
+            src={book.coverimage}
+            alt={book.title}
+            onError={() => setImageFailed(true)}
+          />
+        )}
+      </div>
 
       <h2>{book.title}</h2>
-
       <p>{book.author}</p>
 
       <p className={book.available ? "status available" : "status unavailable"}>

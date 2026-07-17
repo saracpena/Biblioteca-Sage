@@ -28,25 +28,26 @@ export function AuthProvider({ children }) {
 
       setUser(response.data);
     } catch (error) {
-      console.log(error);
+      console.log(error.response?.data || error);
     }
   };
 
   useEffect(() => {
     if (token) {
       getUser(token);
+    } else {
+      setUser(null);
     }
   }, [token]);
 
-  const login = (newToken, newUser) => {
+  const login = (newToken, newUser = null) => {
     localStorage.setItem("token", newToken);
-    setToken(newToken);
 
     if (newUser) {
       setUser(newUser);
-    } else {
-      getUser(newToken);
     }
+
+    setToken(newToken);
   };
 
   const logout = () => {
